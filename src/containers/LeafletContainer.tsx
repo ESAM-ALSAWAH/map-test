@@ -1,12 +1,19 @@
-import { useRef, useState, useEffect } from 'react'
 import { FullScreenButton } from '@/components/Leaflet/FullScreenButton'
+import { LayersControl } from '@/components/Leaflet/LayersControl'
 import { useLeaflet } from '@/hooks/useLeaflet'
-import { Box } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import { MapContainer, TileLayer } from 'react-leaflet'
 
 const Leaflet = () => {
-  const { containerMapRef, fullScreenMode, mapData, handleFullScreen } =
-    useLeaflet()
+  const {
+    containerMapRef,
+    fullScreenMode,
+    mapData,
+    handleFullScreen,
+    activeLayer,
+    activeLayerId,
+    handleLayerChange,
+  } = useLeaflet()
   return (
     <Box
       ref={containerMapRef}
@@ -21,12 +28,20 @@ const Leaflet = () => {
         center={mapData.position}
         style={{ height: '100%', borderRadius: 16 }}
         zoomControl={false}
+        boundsOptions={{}}
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <FullScreenButton handleFullScreen={handleFullScreen} />
+        <TileLayer url={activeLayer?.url ?? ''} />
+        <Stack
+          direction="row"
+          gap={2}
+          sx={{ position: 'absolute', bottom: 10, left: 10, zIndex: 1000 }}
+        >
+          <FullScreenButton handleFullScreen={handleFullScreen} />
+          <LayersControl
+            activeLayerId={activeLayerId}
+            handleLayerChange={handleLayerChange}
+          />
+        </Stack>
       </MapContainer>
     </Box>
   )

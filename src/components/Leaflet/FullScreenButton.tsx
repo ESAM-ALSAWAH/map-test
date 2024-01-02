@@ -9,10 +9,6 @@ export const FullScreenButton = ({
     <Tooltip title="Full Screen">
       <IconButton
         sx={{
-          position: 'absolute',
-          bottom: 10,
-          left: 10,
-          zIndex: 1000,
           bgcolor: 'white',
           border: '1px solid white',
 
