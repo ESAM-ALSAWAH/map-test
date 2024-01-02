@@ -19,6 +19,7 @@ const Leaflet = () => {
     activeLayer,
     activeLayerId,
     handleLayerChange,
+    togglePing,
     toggleGrouping,
     handleZoomIn,
     handleZoomOut,
@@ -76,7 +77,10 @@ const Leaflet = () => {
             activeLayerId={activeLayerId}
             handleLayerChange={handleLayerChange}
           />
-          <SettingsButton toggleGrouping={toggleGrouping} />
+          <SettingsButton
+            toggleGrouping={toggleGrouping}
+            togglePing={togglePing}
+          />
           <FullScreenButton handleFullScreen={handleFullScreen} />
         </Stack>
       </MapContainer>

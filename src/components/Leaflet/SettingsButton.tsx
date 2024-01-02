@@ -10,8 +10,10 @@ import { usePopover } from '@/hooks/general/usePopover'
 import SettingsIcon from '@mui/icons-material/Settings'
 export const SettingsButton = ({
   toggleGrouping,
+  togglePing,
 }: {
-  toggleGrouping: (grouping: boolean) => void
+  toggleGrouping: () => void
+  togglePing: () => void
 }) => {
   const { open, anchorEl, handleClick, handleClose } = usePopover()
   return (
@@ -50,7 +52,7 @@ export const SettingsButton = ({
         <Stack gap={1} sx={{ p: 1 }}>
           <FormControlLabel
             control={<Switch defaultChecked />}
-            onChange={(_, checked) => toggleGrouping(checked)}
+            onChange={toggleGrouping}
             label="Markers Grouping"
             slotProps={{
               typography: {
@@ -60,6 +62,7 @@ export const SettingsButton = ({
           />
           <FormControlLabel
             control={<Switch defaultChecked />}
+            onChange={togglePing}
             label="Markers Ping Angle"
             slotProps={{
               typography: {
