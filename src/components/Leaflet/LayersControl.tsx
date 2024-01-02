@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@mui/material'
 import LayersIcon from '@mui/icons-material/Layers'
-import { baseLayers } from '@/hooks/useLeaflet'
+import { baseLayers } from '@/hooks/leaflet/useLeaflet'
 import { usePopover } from '@/hooks/general/usePopover'
 export const LayersControl = ({
   activeLayerId,
@@ -25,6 +25,7 @@ export const LayersControl = ({
             zIndex: 1000,
             bgcolor: 'white',
             border: '1px solid white',
+            color: 'primary.main',
 
             ':hover': {
               bgcolor: 'white',

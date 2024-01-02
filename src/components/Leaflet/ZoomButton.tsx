@@ -24,7 +24,6 @@ export const ZoomButton = ({
             height: '100%',
             borderRight: '2px solid rgba(66, 70, 73, 0.5)',
             borderRadius: 0,
-            color: '#757575',
           }}
           onClick={handleZoomIn}
           onDoubleClick={(e) => e.preventDefault()}
@@ -34,7 +33,7 @@ export const ZoomButton = ({
       </Tooltip>
       <Tooltip title="Zoom Out">
         <Button
-          sx={{ height: '100%', color: '#757575', borderRadius: 0 }}
+          sx={{ height: '100%', borderRadius: 0 }}
           onClick={handleZoomOut}
           onDoubleClick={(e) => e.preventDefault()}
         >

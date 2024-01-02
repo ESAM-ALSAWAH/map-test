@@ -11,6 +11,7 @@ export const FullScreenButton = ({
         sx={{
           bgcolor: 'white',
           border: '1px solid white',
+          color: 'primary.main',
 
           ':hover': {
             bgcolor: 'white',

@@ -3,3 +3,20 @@
 body {
   padding: 40px;
 }
+
+
+.custom-marker-icon {
+  background: transparent;
+}
+
+.custom-marker-shadow {
+  background-image: url("./assets/genericCarMarker.png");
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  /* background-color: red; */
+
+}

@@ -1,7 +1,18 @@
-import { IconButton, Popover, Stack, Tooltip } from '@mui/material'
+import {
+  FormControlLabel,
+  IconButton,
+  Popover,
+  Stack,
+  Switch,
+  Tooltip,
+} from '@mui/material'
 import { usePopover } from '@/hooks/general/usePopover'
 import SettingsIcon from '@mui/icons-material/Settings'
-export const SettingsButton = ({}: {}) => {
+export const SettingsButton = ({
+  toggleGrouping,
+}: {
+  toggleGrouping: (grouping: boolean) => void
+}) => {
   const { open, anchorEl, handleClick, handleClose } = usePopover()
   return (
     <>
@@ -11,6 +22,7 @@ export const SettingsButton = ({}: {}) => {
             zIndex: 1000,
             bgcolor: 'white',
             border: '1px solid white',
+            color: 'primary.main',
 
             ':hover': {
               bgcolor: 'white',
@@ -35,7 +47,27 @@ export const SettingsButton = ({}: {}) => {
           horizontal: 'center',
         }}
       >
-        <Stack direction="row" gap={2} sx={{ p: 1 }}></Stack>
+        <Stack gap={1} sx={{ p: 1 }}>
+          <FormControlLabel
+            control={<Switch defaultChecked />}
+            onChange={(_, checked) => toggleGrouping(checked)}
+            label="Markers Grouping"
+            slotProps={{
+              typography: {
+                variant: 'body1',
+              },
+            }}
+          />
+          <FormControlLabel
+            control={<Switch defaultChecked />}
+            label="Markers Ping Angle"
+            slotProps={{
+              typography: {
+                variant: 'body1',
+              },
+            }}
+          />
+        </Stack>
       </Popover>
     </>
   )

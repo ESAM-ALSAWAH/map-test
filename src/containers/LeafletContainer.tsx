@@ -2,10 +2,10 @@ import { FullScreenButton } from '@/components/Leaflet/FullScreenButton'
 import { LayersControl } from '@/components/Leaflet/LayersControl'
 import { SettingsButton } from '@/components/Leaflet/SettingsButton'
 import { ZoomButton } from '@/components/Leaflet/ZoomButton'
-import { useLeaflet } from '@/hooks/useLeaflet'
+import { useLeaflet } from '@/hooks/leaflet/useLeaflet'
 import { Box, Stack } from '@mui/material'
-import { MapContainer, TileLayer } from 'react-leaflet'
-
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+import MarkerClusterGroup from 'react-leaflet-cluster'
 const Leaflet = () => {
   const {
     mapRef,
@@ -16,9 +16,31 @@ const Leaflet = () => {
     activeLayer,
     activeLayerId,
     handleLayerChange,
+    toggleGrouping,
     handleZoomIn,
     handleZoomOut,
+    customIcon,
   } = useLeaflet()
+
+  const renderMarkers = mapData.markers_grouping ? (
+    <MarkerClusterGroup chunkedLoading>
+      {mapData.markers?.map((marker, index) => (
+        <Marker
+          key={index}
+          position={marker.position}
+          icon={customIcon(marker)}
+        />
+      ))}
+    </MarkerClusterGroup>
+  ) : (
+    mapData.markers?.map((marker, index) => (
+      <Marker
+        key={index}
+        position={marker.position}
+        icon={customIcon(marker)}
+      />
+    ))
+  )
   return (
     <Box
       ref={containerMapRef}
@@ -37,6 +59,7 @@ const Leaflet = () => {
         boundsOptions={{}}
       >
         <TileLayer url={activeLayer?.url ?? ''} />
+        {renderMarkers}
         <Stack
           direction="row"
           gap={2}
@@ -50,7 +73,7 @@ const Leaflet = () => {
             activeLayerId={activeLayerId}
             handleLayerChange={handleLayerChange}
           />
-          <SettingsButton />
+          <SettingsButton toggleGrouping={toggleGrouping} />
           <FullScreenButton handleFullScreen={handleFullScreen} />
         </Stack>
       </MapContainer>

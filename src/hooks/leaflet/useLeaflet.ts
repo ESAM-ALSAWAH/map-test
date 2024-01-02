@@ -1,10 +1,13 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { MapContainerProps, useMap } from 'react-leaflet'
+import { MapContainerProps, } from 'react-leaflet'
 import osmImage from '@/assets/osm.png'
 import googleImage from '@/assets/google.png'
 import googleSatelliteImage from '@/assets/googleSatellite.png'
 import { Map } from 'leaflet'
+import L from 'leaflet'
+import { mockMarkers, MarkerType } from '@/data/mockMarkers'
+import { MAP_ZOM_VALUE } from '@/constants/appConstants'
 
 export const baseLayers = [
   {
@@ -26,6 +29,11 @@ export const baseLayers = [
     image: googleSatelliteImage
   },
 ];
+
+
+
+
+
 export const useLeaflet = () => {
 
   const mapRef = useRef<Map>(null)
@@ -36,7 +44,21 @@ export const useLeaflet = () => {
   const [mapData, setMapData] = useState<{
     position: MapContainerProps['center']
     zoom: number
-  }>({ position: [33.5074755, 36.2828954], zoom: 15 })
+    markers_grouping: boolean
+    markers_ping: boolean
+    markers: MarkerType[]
+
+  }>({ position: [33.5074755, 36.2828954], zoom: 11, markers_grouping: true, markers_ping: true, markers: mockMarkers })
+
+  const customIcon = (marker: MarkerType) => new L.DivIcon({
+    className: 'custom-marker-icon',
+    iconAnchor: [0, 20],
+    html: `<div class="custom-marker-shadow" style="transform: rotate(${marker.rotate}deg);background-color:${marker.color};">
+    
+  </div>`,
+  })
+
+
   useEffect(() => {
     const handleFullScreenChange = () => {
       setFullScreenMode(document.fullscreenElement !== null)
@@ -48,6 +70,7 @@ export const useLeaflet = () => {
       document.removeEventListener('fullscreenchange', handleFullScreenChange)
     }
   }, [])
+
   useEffect(() => {
     mapRef.current?.setZoom(mapData.zoom)
   }, [mapData.zoom])
@@ -64,9 +87,11 @@ export const useLeaflet = () => {
     }
   }
 
-  const handleZoomIn = () => setMapData({ ...mapData, zoom: mapData.zoom + 1 })
-  const handleZoomOut = () => setMapData({ ...mapData, zoom: mapData.zoom - 1 })
+  const handleZoomIn = () => setMapData({ ...mapData, zoom: mapData.zoom + MAP_ZOM_VALUE })
+  const handleZoomOut = () => setMapData({ ...mapData, zoom: mapData.zoom - MAP_ZOM_VALUE })
 
   const handleLayerChange = (id: number) => setActiveLayerId(id)
-  return { mapRef, containerMapRef, fullScreenMode, mapData, handleFullScreen, activeLayer, handleLayerChange, activeLayerId, handleZoomOut, handleZoomIn }
+
+  const toggleGrouping = (grouping: boolean) => setMapData({ ...mapData, markers_grouping: grouping })
+  return { mapRef, containerMapRef, fullScreenMode, mapData, toggleGrouping, handleFullScreen, activeLayer, handleLayerChange, activeLayerId, handleZoomOut, handleZoomIn, customIcon }
 }

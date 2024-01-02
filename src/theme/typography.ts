@@ -31,7 +31,7 @@ const typography: TypographyOptions = {
   },
   body1: {
     fontWeight: 500,
-    fontSize: 16,
+    fontSize: 13,
   },
   body2: {
     fontWeight: 400,
