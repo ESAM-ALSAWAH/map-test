@@ -1,10 +1,10 @@
 
-import { type Map } from 'leaflet'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { MapContainerProps, useMap } from 'react-leaflet'
 import osmImage from '@/assets/osm.png'
 import googleImage from '@/assets/google.png'
 import googleSatelliteImage from '@/assets/googleSatellite.png'
+import { Map } from 'leaflet'
 
 export const baseLayers = [
   {
@@ -27,6 +27,8 @@ export const baseLayers = [
   },
 ];
 export const useLeaflet = () => {
+
+  const mapRef = useRef<Map>(null)
   const containerMapRef = useRef<HTMLDivElement>(null)
   const [activeLayerId, setActiveLayerId] = useState(1)
   const activeLayer = useMemo(() => baseLayers?.find((layer) => layer.id === activeLayerId), [activeLayerId])
@@ -46,6 +48,9 @@ export const useLeaflet = () => {
       document.removeEventListener('fullscreenchange', handleFullScreenChange)
     }
   }, [])
+  useEffect(() => {
+    mapRef.current?.setZoom(mapData.zoom)
+  }, [mapData.zoom])
 
   const handleFullScreen = () => {
     const container = containerMapRef.current
@@ -59,6 +64,9 @@ export const useLeaflet = () => {
     }
   }
 
+  const handleZoomIn = () => setMapData({ ...mapData, zoom: mapData.zoom + 1 })
+  const handleZoomOut = () => setMapData({ ...mapData, zoom: mapData.zoom - 1 })
+
   const handleLayerChange = (id: number) => setActiveLayerId(id)
-  return { containerMapRef, fullScreenMode, mapData, handleFullScreen, activeLayer, baseLayers, handleLayerChange, activeLayerId }
+  return { mapRef, containerMapRef, fullScreenMode, mapData, handleFullScreen, activeLayer, handleLayerChange, activeLayerId, handleZoomOut, handleZoomIn }
 }

@@ -1,11 +1,14 @@
 import { FullScreenButton } from '@/components/Leaflet/FullScreenButton'
 import { LayersControl } from '@/components/Leaflet/LayersControl'
+import { SettingsButton } from '@/components/Leaflet/SettingsButton'
+import { ZoomButton } from '@/components/Leaflet/ZoomButton'
 import { useLeaflet } from '@/hooks/useLeaflet'
 import { Box, Stack } from '@mui/material'
 import { MapContainer, TileLayer } from 'react-leaflet'
 
 const Leaflet = () => {
   const {
+    mapRef,
     containerMapRef,
     fullScreenMode,
     mapData,
@@ -13,6 +16,8 @@ const Leaflet = () => {
     activeLayer,
     activeLayerId,
     handleLayerChange,
+    handleZoomIn,
+    handleZoomOut,
   } = useLeaflet()
   return (
     <Box
@@ -24,6 +29,7 @@ const Leaflet = () => {
       }}
     >
       <MapContainer
+        ref={mapRef}
         zoom={mapData.zoom}
         center={mapData.position}
         style={{ height: '100%', borderRadius: 16 }}
@@ -36,11 +42,16 @@ const Leaflet = () => {
           gap={2}
           sx={{ position: 'absolute', bottom: 10, left: 10, zIndex: 1000 }}
         >
-          <FullScreenButton handleFullScreen={handleFullScreen} />
+          <ZoomButton
+            handleZoomIn={handleZoomIn}
+            handleZoomOut={handleZoomOut}
+          />
           <LayersControl
             activeLayerId={activeLayerId}
             handleLayerChange={handleLayerChange}
           />
+          <SettingsButton />
+          <FullScreenButton handleFullScreen={handleFullScreen} />
         </Stack>
       </MapContainer>
     </Box>
