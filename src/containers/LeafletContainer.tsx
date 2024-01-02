@@ -1,11 +1,14 @@
-import { FullScreenButton } from '@/components/Leaflet/FullScreenButton'
-import { LayersControl } from '@/components/Leaflet/LayersControl'
-import { SettingsButton } from '@/components/Leaflet/SettingsButton'
-import { ZoomButton } from '@/components/Leaflet/ZoomButton'
-import { useLeaflet } from '@/hooks/leaflet/useLeaflet'
 import { Box, Stack } from '@mui/material'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-cluster'
+import {
+  FullScreenButton,
+  LayersControl,
+  SettingsButton,
+  ZoomButton,
+} from '@/components'
+import { useLeaflet } from '@/hooks/leaflet/useLeaflet'
+
 const Leaflet = () => {
   const {
     mapRef,

@@ -1,6 +1,5 @@
-import 'leaflet/dist/leaflet.css'
-import Leaflet from '@/containers/LeafletContainer'
 import ThemeProvider from '@/theme/ThemeProvider'
+import Leaflet from '@/containers/LeafletContainer'
 const App = () => {
   return (
     <ThemeProvider>
