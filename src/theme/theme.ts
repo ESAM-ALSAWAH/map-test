@@ -1,13 +1,14 @@
-import { createTheme } from "@mui/material";
-import typography from "./typography";
+import { createTheme } from '@mui/material'
+import typography from './typography'
 
+const primaryColor = '#424649'
 const theme = createTheme({
   direction: 'ltr',
   typography,
   palette: {
     primary: {
-      main: '#424649'
-    }
-  }
-});
-export default theme;
+      main: primaryColor,
+    },
+  },
+})
+export default theme

@@ -1,4 +1,4 @@
-import { TypographyOptions } from "@mui/material/styles/createTypography";
+import { TypographyOptions } from '@mui/material/styles/createTypography'
 
 const typography: TypographyOptions = {
   fontFamily: '"Manrope", sans-serif',
@@ -9,24 +9,24 @@ const typography: TypographyOptions = {
     letterSpacing: 0,
   },
   h1: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 24,
   },
 
   h2: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 20,
   },
   h3: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 16,
   },
   h4: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 12,
   },
   h5: {
-    fontWeight: "600",
+    fontWeight: '600',
     fontSize: 12,
   },
   body1: {
@@ -41,6 +41,6 @@ const typography: TypographyOptions = {
     fontWeight: 600,
     fontSize: 12,
   },
-};
+}
 
-export default typography;
+export default typography

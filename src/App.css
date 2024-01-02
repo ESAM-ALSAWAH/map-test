@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap');
 
+* {
+  outline: 0;
+}
+
 body {
   padding: 40px;
 }
@@ -9,7 +13,7 @@ body {
 }
 
 .custom-marker-shadow {
-  background-image: url("./assets/genericCarMarker.png");
+  background-image: url('./assets/genericCarMarker.png');
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -43,7 +47,8 @@ body {
 }
 
 @keyframes ping {
-  75%, 100% {
+  75%,
+  100% {
     transform: scale(2) translate(-50%, 0);
     opacity: 0;
   }
