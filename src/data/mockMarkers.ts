@@ -23,7 +23,7 @@ export const mockMarkers: MarkerType[] = [
   },
   {
     position: [33.40588, 36.542005],
-    rotate: -42,
+    rotate: -165,
     color: '#2e7d32',
   },
   {
