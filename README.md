@@ -2,14 +2,13 @@
 
 ## Demo link:
 
-Access my site at [map test](https://map-test-b7dgv9907-esam-alsawah.vercel.app/)
+Access my site at [map test](https://map-test-five.vercel.app/)
 
 ## Table of Content:
 
 - [Features](#features)
 - [Technologies](#technologies)
 - [Setup](#setup)
-- [Status](#status)
 
 # Features
 
@@ -35,7 +34,7 @@ Access my site at [map test](https://map-test-b7dgv9907-esam-alsawah.vercel.app/
 
 ## Technologies
 
-I used `React.Js`, `react-leaflet`, `leaflet`
+I used `React.Js`, `MUI`, `react-leaflet`, `leaflet`
 
 ## Setup
 
@@ -43,6 +42,4 @@ I used `React.Js`, `react-leaflet`, `leaflet`
 - run `npm install` or `yarn add`
 - run `npm dev` or `yarn dev`
 
-## Status
-
-Map test is still in progress.
+.
