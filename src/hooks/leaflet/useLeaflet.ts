@@ -8,6 +8,7 @@ import { Map } from 'leaflet'
 import L from 'leaflet'
 import { mockMarkers, MarkerType } from '@/data/mockMarkers'
 import { MAP_ZOM_VALUE } from '@/constants/appConstants'
+import { fade } from '@/utils/fade'
 
 export const baseLayers = [
   {
@@ -53,9 +54,9 @@ export const useLeaflet = () => {
   const customIcon = (marker: MarkerType) => new L.DivIcon({
     className: 'custom-marker-icon',
     iconAnchor: [0, 20],
-    html: `<div class="custom-marker-shadow" style="transform: rotate(${marker.rotate}deg);background-color:${marker.color};">
-    
-  </div>`,
+    html: `<div class="custom-marker-shadow" style="transform: rotate(${marker.rotate}deg);background-color:${fade(marker.color ?? "#fff", .8)};">
+            <div class="triangle" style="border-bottom-color:${marker.color};"></div>
+          </div>`,
   })
 
 
@@ -93,5 +94,6 @@ export const useLeaflet = () => {
   const handleLayerChange = (id: number) => setActiveLayerId(id)
 
   const toggleGrouping = (grouping: boolean) => setMapData({ ...mapData, markers_grouping: grouping })
+
   return { mapRef, containerMapRef, fullScreenMode, mapData, toggleGrouping, handleFullScreen, activeLayer, handleLayerChange, activeLayerId, handleZoomOut, handleZoomIn, customIcon }
 }
