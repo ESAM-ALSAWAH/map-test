@@ -1,5 +1,11 @@
+import 'leaflet/dist/leaflet.css'
+import Leaflet from '@/containers/LeafletContainer'
 const App = () => {
-  return <></>
+  return (
+    <>
+      <Leaflet />
+    </>
+  )
 }
 
 export default App
